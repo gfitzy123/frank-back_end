@@ -17,19 +17,22 @@ const UsersSchema = new Schema({
     password: {
         type: String,
         required: true
+    },
+    resetPasswordCode: {
+        type: String
     }
 });
 
 const Users = mongoose.model('Users', UsersSchema);
 module.exports = Users;
 
-UsersSchema.pre('save', function (next) {
-    var user = this;
-    bcrypt.hash(user.password, 10, function (err, hash){
-      if (err) {
-        return next(err);
-      }
-      user.password = hash;
-      next();
-    })
-});
+// UsersSchema.pre('save', function (next) {
+//     var user = this;
+//     bcrypt.hash(user.password, 10, function (err, hash){
+//       if (err) {
+//         return next(err);
+//       }
+//       user.password = hash;
+//       next();
+//     })
+// });
